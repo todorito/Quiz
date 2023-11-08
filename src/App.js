@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FinalPage from "./components/FinalPage";
 import HomePage from "./components/HomePage";
 import MainPage from "./components/MainPage";
+import DoodleImage from "./img/doodles.png";
 
 function App() {
   const [page, setPage] = useState("HomePage");
@@ -37,15 +38,28 @@ function App() {
     setQuizData(quizs);
     setPage("MainPage");
   };
+  document.body.style.backgroundImage = `url(${DoodleImage})`;
+
   return (
-    <div>
-      {page === "HomePage" && <HomePage getQuestions={getQuestions} />}
-      {page === "MainPage" && (
-        <MainPage setPage={setPage} quizData={quizData} setPoints={setPoints} />
-      )}
-      {page === "FinalPage" && (
-        <FinalPage setPage={setPage} points={points} setPoints={setPoints} />
-      )}
+    <div className="w-3/5 m-auto mt-[10%] bg-pink-400 font-mono h-[50vh]">
+      <div className="p-[2%] h-full">
+        {page === "HomePage" && <HomePage getQuestions={getQuestions} />}
+        {page === "MainPage" && (
+          <MainPage
+            setPage={setPage}
+            quizData={quizData}
+            setPoints={setPoints}
+          />
+        )}
+        {page === "FinalPage" && (
+          <FinalPage
+            setPage={setPage}
+            points={points}
+            numberQuizs={quizData.length}
+            setPoints={setPoints}
+          />
+        )}
+      </div>
     </div>
   );
 }
