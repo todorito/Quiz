@@ -9,7 +9,7 @@ function HomePage({ getQuestions }) {
   const [isNotFilled, setIsNotFilled] = useState(false);
 
   const warning = (
-    <div className="bg-gray-300 w-2/5 rounded font-semibold self-center p-1 text-center text-red-500 border-2 border-orange-300">
+    <div className="bg-gray-300 md:w-2/5 rounded font-semibold self-center p-1 text-center text-red-500 border-2 border-orange-300">
       Please fill all the fields to start the quiz
     </div>
   );
@@ -35,7 +35,7 @@ function HomePage({ getQuestions }) {
 
   return (
     <form className="h-full flex flex-col">
-      <h1 className="p-3 text-3xl">Let's have a Quiz!</h1>
+      <h1 className="p-3 text-xl">Let's have a Quiz!</h1>
       <div className="mt-5 mb-5">
         <p className="text-xl mb-1">Select how many questions?</p>
         <input
@@ -46,7 +46,7 @@ function HomePage({ getQuestions }) {
           onChange={handleForm}
           name="number"
           placeholder=" Enter a number up to 15"
-          className="placeholder:italic placeholder:text-slate-400 w-1/4 border rounded p-2"
+          className="placeholder:italic placeholder:text-slate-400 md:w-1/4 w-full border rounded p-2 "
         />
       </div>
       <div className="mb-5">
@@ -55,7 +55,7 @@ function HomePage({ getQuestions }) {
           value={formData.category}
           onChange={handleForm}
           name="category"
-          className="w-1/4 border rounded p-2"
+          className="md:w-1/4 w-full border rounded p-2 "
         >
           <option value="">--Choose</option>
           <option value={9}>General Knowledge</option>
@@ -73,7 +73,7 @@ function HomePage({ getQuestions }) {
           value={formData.typeOfQuiz}
           onChange={handleForm}
           name="typeOfQuiz"
-          className="w-1/4 border rounded p-2"
+          className="md:w-1/4 w-full border rounded p-2"
         >
           <option value="">--Choose</option>
           <option value="multiple">Multiple Choice</option>
@@ -82,7 +82,7 @@ function HomePage({ getQuestions }) {
       </div>
       {isNotFilled && warning}
       <button
-        className="font-medium p-3 px-5 m-2 text-2xl bg-blue-300 border-2 border-slate-500 hover:bg-blue-400 hover:border-slate-400 bottom-5 mb-0 mt-auto w-4/5 self-center"
+        className="font-medium p-3 px-5 m-2 text-2xl bg-blue-300 border-2 border-slate-500 hover:bg-blue-400 hover:border-slate-400 bottom-5 mb-0 w-4/5 self-center"
         onClick={handleSubmit}
       >
         Start Quiz

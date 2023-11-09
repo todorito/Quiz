@@ -19,13 +19,14 @@ function MainPage({ setPage, quizData, setPoints }) {
     setPage("HomePage");
   };
   const [quizNum, setQuizNum] = useState(0);
+
   const selectAnswer = function (e) {
     if (quizData[quizNum].correctAnswer === e.target.textContent) {
       setPoints((prevPoint) => prevPoint + 1);
       console.log("Yeahy!! Correct!");
-      playSuccessSound();
+      !isMute && playSuccessSound();
     } else {
-      playFailureSound();
+      !isMute && playFailureSound();
     }
     if (quizNum === quizData.length - 1) {
       setPage("FinalPage");
@@ -33,8 +34,16 @@ function MainPage({ setPage, quizData, setPoints }) {
       setQuizNum((prevQuizNum) => prevQuizNum + 1);
     }
   };
+
+  const [isMute, setIsMute] = useState(false);
+  const toggleSound = function () {
+    setIsMute(!isMute);
+  };
   return (
     <div className="h-full flex flex-col">
+      <div className="t-0 text-4xl" onClick={toggleSound}>
+        {isMute ? "🔇" : "🔊"}
+      </div>
       {quizData[quizNum].type === "boolean" && (
         <BooleanQuiz
           currentQuestion={quizNum}
@@ -53,7 +62,7 @@ function MainPage({ setPage, quizData, setPoints }) {
         />
       )}
       <button
-        className="font-normal p-3 px-5 m-2 text-xl bg-blue-300 border-2 border-slate-500 hover:font-semibold hover:bg-blue-400 hover:border-slate-400 mt-auto mb-0 w-2/5 self-start"
+        className="font-normal p-3 px-5 m-2 text-xl bg-blue-300 border-2 border-slate-500 hover:font-semibold hover:bg-blue-400 hover:border-slate-400 md:mt-auto mb-0 md:w-2/5 self-start"
         onClick={returnToHomepage}
       >
         Start New Quiz!

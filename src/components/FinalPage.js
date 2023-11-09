@@ -6,11 +6,11 @@ function FinalPage({ setPage, points, setPoints, numberQuizs }) {
 
   let percentage = (points * 100) / numberQuizs;
   return (
-    <div className="h-full flex flex-col">
-      <h1 className="p-3 text-2xl bg-gray-200  w-1/3 self-start rounded">
+    <div className="h-full flex flex-col min-h-[50vh]">
+      <h1 className="p-3 text-2xl bg-gray-200 w-full md:w-1/3 md:self-start rounded text-center">
         Your Score is: {points}
       </h1>
-      <div className="text-xl mt-12">
+      <div className="text-xl md:mt-12 mt-[20%] text-center">
         {percentage > 80 && (
           <div>
             Wow! You're an expert!<span className="text-4xl"> 😎</span>
@@ -29,7 +29,7 @@ function FinalPage({ setPage, points, setPoints, numberQuizs }) {
         )}
       </div>
       <button
-        className="font-medium p-3 px-5 m-2 text-2xl bg-orange-400 border-2 border-yellow-500 hover:bg-orange-300 hover:border-x-4 mt-auto mb-0 w-2/5 self-center"
+        className="font-medium p-3 px-5 m-2 text-2xl bg-orange-400 border-2 border-yellow-500 hover:bg-orange-300 hover:border-x-4 mt-auto mb-0 md:w-2/5 self-center"
         onClick={changePage}
       >
         Try again

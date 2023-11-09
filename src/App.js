@@ -3,6 +3,7 @@ import FinalPage from "./components/FinalPage";
 import HomePage from "./components/HomePage";
 import MainPage from "./components/MainPage";
 import DoodleImage from "./img/doodles.png";
+import DoodleImage2 from "./img/doodles2.jpg";
 
 function App() {
   const [page, setPage] = useState("HomePage");
@@ -17,13 +18,6 @@ function App() {
 
     let quizs = [];
     for (let i = 0; i < data.results.length; i++) {
-      console.log(
-        data.results[i].type,
-        data.results[i].question,
-        data.results[i].correct_answer,
-        data.results[i].incorrect_answers
-      );
-
       quizs.push({
         question: data.results[i].question,
         answers: [
@@ -38,10 +32,15 @@ function App() {
     setQuizData(quizs);
     setPage("MainPage");
   };
-  document.body.style.backgroundImage = `url(${DoodleImage})`;
+
+  if (window.innerWidth > 640) {
+    document.body.style.backgroundImage = `url(${DoodleImage})`;
+  } else {
+    document.body.style.backgroundImage = `url(${DoodleImage2})`;
+  }
 
   return (
-    <div className="w-3/5 m-auto mt-[10%] bg-pink-400 font-mono h-[50vh]">
+    <div className="md:w-3/5 m-auto md:mt-[10%] mt-[20%] bg-pink-400 font-mono">
       <div className="p-[2%] h-full">
         {page === "HomePage" && <HomePage getQuestions={getQuestions} />}
         {page === "MainPage" && (
