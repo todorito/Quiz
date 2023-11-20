@@ -1,6 +1,6 @@
 import { useState } from "react";
-import BooleanQuiz from "./BooleanQuiz";
-import MultipleQuiz from "./MultipleQuiz";
+import BooleanQuiz from "../components/BooleanQuiz";
+import MultipleQuiz from "../components/MultipleQuiz";
 import SuccessSound from "../assets/success.mp3";
 import FailureSound from "../assets/failure.mp3";
 
@@ -16,6 +16,7 @@ function playFailureSound() {
 
 function MainPage({ setPage, quizData, setPoints }) {
   const returnToHomepage = function () {
+    setPoints(0);
     setPage("HomePage");
   };
   const [quizNum, setQuizNum] = useState(0);
@@ -23,7 +24,6 @@ function MainPage({ setPage, quizData, setPoints }) {
   const selectAnswer = function (e) {
     if (quizData[quizNum].correctAnswer === e.target.textContent) {
       setPoints((prevPoint) => prevPoint + 1);
-      console.log("Yeahy!! Correct!");
       !isMute && playSuccessSound();
     } else {
       !isMute && playFailureSound();

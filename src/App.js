@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FinalPage from "./components/FinalPage";
-import HomePage from "./components/HomePage";
-import MainPage from "./components/MainPage";
+import FinalPage from "./pages/FinalPage";
+import HomePage from "./pages/HomePage";
+import MainPage from "./pages/MainPage";
 import DoodleImage from "./img/doodles.png";
 import DoodleImage2 from "./img/doodles2.jpg";
 

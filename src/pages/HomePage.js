@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function HomePage({ getQuestions }) {
   const [formData, setFormData] = useState({
-    number: 1,
+    number: 5,
     category: "",
     typeOfQuiz: "",
   });
@@ -38,16 +38,18 @@ function HomePage({ getQuestions }) {
       <h1 className="p-3 text-xl">Let's have a Quiz!</h1>
       <div className="mt-5 mb-5">
         <p className="text-xl mb-1">Select how many questions?</p>
-        <input
+        <select
           type="number"
-          max="15"
-          min="1"
           value={formData.number}
           onChange={handleForm}
           name="number"
-          placeholder=" Enter a number up to 15"
-          className="placeholder:italic placeholder:text-slate-400 md:w-1/4 w-full border rounded p-2 "
-        />
+          className="placeholder:italic placeholder:text-slate-400 md:w-1/4
+          w-full border rounded p-2 "
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={15}>15</option>
+        </select>
       </div>
       <div className="mb-5">
         <p className="text-xl mb-1">Select category</p>

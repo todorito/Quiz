@@ -3,12 +3,12 @@ function FinalPage({ setPage, points, setPoints, numberQuizs }) {
     setPage("HomePage");
     setPoints(0);
   };
-
+  console.log(numberQuizs);
   let percentage = (points * 100) / numberQuizs;
   return (
     <div className="h-full flex flex-col min-h-[50vh]">
       <h1 className="p-3 text-2xl bg-gray-200 w-full md:w-1/3 md:self-start rounded text-center">
-        Your Score is: {points}
+        Your Score is: {points}, you got {Math.round(percentage)}% right
       </h1>
       <div className="text-xl md:mt-12 mt-[20%] text-center">
         {percentage > 80 && (
