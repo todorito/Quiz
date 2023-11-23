@@ -3,6 +3,9 @@ This project was created using React.js with create-react-app and tailwind CSS. 
 To run this project:
 
 clone this repository
+
 run npm install in the project directory
+
 run npm start
+
 The application will run in localhost:3000
