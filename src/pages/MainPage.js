@@ -22,17 +22,29 @@ function MainPage({ setPage, quizData, setPoints }) {
   const [quizNum, setQuizNum] = useState(0);
 
   const selectAnswer = function (e) {
-    if (quizData[quizNum].correctAnswer === e.target.textContent) {
+    const el = e.target;
+    if (quizData[quizNum].correctAnswer === el.textContent) {
+      el.classList.add("bg-lime-500", "hover:bg-lime-500");
       setPoints((prevPoint) => prevPoint + 1);
       !isMute && playSuccessSound();
     } else {
+      el.classList.add("bg-red-500", "border-red-500", "hover:bg-red-500");
       !isMute && playFailureSound();
     }
-    if (quizNum === quizData.length - 1) {
-      setPage("FinalPage");
-    } else {
-      setQuizNum((prevQuizNum) => prevQuizNum + 1);
-    }
+    setTimeout(() => {
+      if (quizNum === quizData.length - 1) {
+        setPage("FinalPage");
+      } else {
+        el.classList.remove(
+          "hover:bg-red-500",
+          "border-red-500",
+          "bg-red-500",
+          "bg-lime-500",
+          "hover:bg-lime-500"
+        );
+        setQuizNum((prevQuizNum) => prevQuizNum + 1);
+      }
+    }, 1000);
   };
 
   const [isMute, setIsMute] = useState(false);
