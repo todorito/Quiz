@@ -19,34 +19,28 @@ function MainPage({ setPage, quizData, setPoints }) {
     setPoints(0);
     setPage("HomePage");
   };
+
   const [quizNum, setQuizNum] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const selectAnswer = function (e) {
     const el = e.target;
+    setSelectedAnswer(el.textContent);
     if (quizData[quizNum].correctAnswer === el.textContent) {
-      el.classList.add("bg-lime-500", "hover:bg-lime-500");
       setPoints((prevPoint) => prevPoint + 1);
       !isMute && playSuccessSound();
     } else {
-      el.classList.add("bg-red-500", "border-red-500", "hover:bg-red-500");
       !isMute && playFailureSound();
     }
     setTimeout(() => {
+      setSelectedAnswer(null);
       if (quizNum === quizData.length - 1) {
         setPage("FinalPage");
       } else {
-        el.classList.remove(
-          "hover:bg-red-500",
-          "border-red-500",
-          "bg-red-500",
-          "bg-lime-500",
-          "hover:bg-lime-500"
-        );
         setQuizNum((prevQuizNum) => prevQuizNum + 1);
       }
     }, 1000);
   };
-
   const [isMute, setIsMute] = useState(false);
   const toggleSound = function () {
     setIsMute(!isMute);
@@ -62,6 +56,8 @@ function MainPage({ setPage, quizData, setPoints }) {
           numQuizs={quizData.length}
           question={quizData[quizNum].question}
           selectAnswer={selectAnswer}
+          selectedAnswer={selectedAnswer}
+          correctAnswer={quizData[quizNum].correctAnswer}
         />
       )}
       {quizData[quizNum].type === "multiple" && (
@@ -70,7 +66,9 @@ function MainPage({ setPage, quizData, setPoints }) {
           numQuizs={quizData.length}
           question={quizData[quizNum].question}
           answers={quizData[quizNum].answers}
+          correctAnswer={quizData[quizNum].correctAnswer}
           selectAnswer={selectAnswer}
+          selectedAnswer={selectedAnswer}
         />
       )}
       <button
