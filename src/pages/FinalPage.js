@@ -3,7 +3,7 @@ function FinalPage({ setPage, points, setPoints, numberQuizs }) {
     setPage("HomePage");
     setPoints(0);
   };
-  console.log(numberQuizs);
+
   let percentage = (points * 100) / numberQuizs;
   return (
     <div className="h-full flex flex-col min-h-[50vh]">
@@ -11,7 +11,7 @@ function FinalPage({ setPage, points, setPoints, numberQuizs }) {
         Your Score is: {points}, you got {Math.round(percentage)}% right
       </h1>
       <div className="text-xl md:mt-12 mt-[20%] text-center">
-        {percentage > 80 && (
+        {percentage > 80 && percentage == 80 && (
           <div>
             Wow! You're an expert!<span className="text-4xl"> 😎</span>
           </div>
@@ -21,7 +21,7 @@ function FinalPage({ setPage, points, setPoints, numberQuizs }) {
             Well Done! <span className="text-4xl"> 😉</span>
           </div>
         )}
-        {percentage < 50 && (
+        {percentage < 50 && percentage == 50 && (
           <div>
             I guess you could do better.. Better luck next time!
             <span className="text-4xl"> 🤯</span>
